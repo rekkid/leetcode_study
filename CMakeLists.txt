@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.5)
 project(leecode_study)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -45,5 +45,5 @@ add_executable(main main.cpp)
 add_executable(22 22.cpp)
 
 add_executable(1_2sum 1_2sum.cpp)
-target_link_libraries(1_2sum gtest_main)
+target_link_libraries(1_2sum gtest_main gmock_main)
 
