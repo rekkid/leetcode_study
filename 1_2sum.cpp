@@ -23,6 +23,7 @@ Example:
 
 using namespace std;
 using ::testing::ElementsAre;
+using ::testing::ElementsAreArray;
 
 class Solution {
  public:
@@ -34,11 +35,12 @@ class Solution {
         auto it = numMap.find(delta);
         if (it != numMap.end()) {
             // 找到
-            return vector<int>{i, it->second};
+            return vector<int>{it->second, i};
         } else {
             numMap[nums[i]] = i;
         }
     }
+    return {};
   }
 };
 
@@ -50,6 +52,7 @@ TEST(Solution, foobar)
   for (auto x : res) {
     cout << x << ",";
   }
+  cout << endl;
   ASSERT_THAT(res, ElementsAre(0, 1));
 }
 
