@@ -47,3 +47,8 @@ add_executable(22 22.cpp)
 add_executable(1_2sum 1_2sum.cpp)
 target_link_libraries(1_2sum gtest_main gmock_main)
 
+add_executable(2_add_two_numbers 2_add_two_numbers.cpp)
+target_link_libraries(2_add_two_numbers gtest_main gmock_main)
+
+add_executable(3_longest_substring_without_repeating_characters 3_longest_substring_without_repeating_characters.cpp)
+target_link_libraries(3_longest_substring_without_repeating_characters gtest_main gmock_main)
