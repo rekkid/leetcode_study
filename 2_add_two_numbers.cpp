@@ -126,7 +126,7 @@ class Solution {
 
 };
 
-TEST(Solution, foobar)
+TEST(Solution, foobar1)
 {
   Solution solution;
   ListNode *l1 = new ListNode(2);
