@@ -37,6 +37,9 @@ class Solution {
  public:
   int lengthOfLongestSubstring(string s) {
     int count = 0;
+    if (s.length() == 0) {
+      return 0;
+    }
     int dp[s.length()];
     for (int i = 0; i < s.length(); i++) {
         dp[i] = 0;
@@ -51,10 +54,13 @@ class Solution {
         charmap[s[i]] = i;
         dp[i] = max(dp[i - 1], int(charmap.size()));
       } else{
-        for (int k = charmap[s[i]] - 1; k >= 0; k--) {
+        int k = charmap[s[i]] - 1;
+        int len = charmap.size();
+        for (int k = charmap[s[i]] - 1; k >= i - len; k--) {
           charmap.erase(s[k]);
         }
-        dp[i] = max(dp[i - 1], int(charmap.size()));
+        charmap[s[i]] = i;
+        dp[i] = dp[i - 1];
       }
     }
 
@@ -70,7 +76,13 @@ TEST(Solution, lengthOfLongestSubstring)
 {
   Solution solution;
 
-  int res = solution.lengthOfLongestSubstring("aabaab!bb");
+  int res = solution.lengthOfLongestSubstring("qrsvbspk");
+  EXPECT_EQ(res, 5);
+
+  res = solution.lengthOfLongestSubstring("bpfbhmipx");
+  EXPECT_EQ(res, 7);
+
+  res = solution.lengthOfLongestSubstring("aabaab!bb");
   EXPECT_EQ(res, 3);
 
   res = solution.lengthOfLongestSubstring("bbbbb");
