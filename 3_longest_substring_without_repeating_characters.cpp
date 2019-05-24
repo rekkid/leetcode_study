@@ -70,6 +70,21 @@ class Solution {
 
     return dp[s.length() - 1];
   }
+
+  int lengthOfLongestSubstring2(string s) {
+    unordered_map<char, int> charmap;
+    int ans = 0;
+    int i = 0;
+    int j = 0;
+    for (; j < s.length(); j++) {
+      if (charmap.find(s[j]) != charmap.end()) {
+        i = max(charmap[s[j]], i);
+      }
+      ans = max(ans, j - i + 1);
+      charmap[s[j]] = j + 1;
+    }
+    return ans;
+  }
 };
 
 TEST(Solution, lengthOfLongestSubstring)
@@ -89,5 +104,25 @@ TEST(Solution, lengthOfLongestSubstring)
   EXPECT_EQ(res, 1);
 
   res = solution.lengthOfLongestSubstring("pwwkew");
+  EXPECT_EQ(res, 3);
+}
+
+TEST(Solution, lengthOfLongestSubstring2)
+{
+  Solution solution;
+
+  int res = solution.lengthOfLongestSubstring2("qrsvbspk");
+  EXPECT_EQ(res, 5);
+
+  res = solution.lengthOfLongestSubstring2("bpfbhmipx");
+  EXPECT_EQ(res, 7);
+
+  res = solution.lengthOfLongestSubstring2("aabaab!bb");
+  EXPECT_EQ(res, 3);
+
+  res = solution.lengthOfLongestSubstring2("bbbbb");
+  EXPECT_EQ(res, 1);
+
+  res = solution.lengthOfLongestSubstring2("pwwkew");
   EXPECT_EQ(res, 3);
 }
